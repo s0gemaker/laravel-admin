@@ -28,3 +28,8 @@ public_html/hot
 
 storage/*.key
 /.vagrant
+
+.dbdata/public_key.pem
+.dbdata/server-cert.pem
+.dbdata/private_key.pem
+.dbdata/server-key.pem
