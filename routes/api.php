@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+//use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('hello', 'App\Http\Controllers\UserController@index');
+Route::apiResource('users', 'App\Http\Controllers\UserController');
+//Route::get('users/{id}', 'App\Http\Controllers\UserController@show');
+//Route::post('users', 'App\Http\Controllers\UserController@store');
+//Route::put('users/{id}', 'App\Http\Controllers\UserController@update');
+//Route::delete('users/{id}', 'App\Http\Controllers\UserController@destroy');
