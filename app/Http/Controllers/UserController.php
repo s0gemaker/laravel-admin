@@ -6,6 +6,10 @@ use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use http\Client\Response;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use function Psy\debug;
@@ -13,17 +17,18 @@ use function Psy\debug;
 class UserController extends Controller
 {
     public function index(): string
+
     {
-        return User::all();
+        return User::paginate();
     }
 
-    public function show($id)
+    public function show($id): Model|Collection|array|User|null
 
     {
         return User::find($id);
     }
 
-    public function store(UserCreateRequest $request)
+    public function store(UserCreateRequest $request): \Illuminate\Http\Response|Application|ResponseFactory
 
     {
         $user = User::create($request->only('first_name', 'last_name', 'email') + [
@@ -34,7 +39,7 @@ class UserController extends Controller
         return response($user, \Symfony\Component\HttpFoundation\Response::HTTP_CREATED);
     }
 
-    public function update(UserUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request, $id): \Illuminate\Http\Response|Application|ResponseFactory
     {
 
         $user = User::find($id);
@@ -55,7 +60,7 @@ class UserController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\Response|Application|ResponseFactory
     {
 
         User::destroy($id);
